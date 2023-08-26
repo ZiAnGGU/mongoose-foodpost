@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const reviewSchema = new Schema({
+const foodpostSchema = new Schema({
     title: {
         type: String,
         enum: ['Japanese Food', 'Mexican Food', 'American Food'],
@@ -19,14 +19,13 @@ const reviewSchema = new Schema({
         type: Schema.Types.ObjectId,
     // }, right now I have no idea to do the image part 
     },
-    review: {
-        type: Schema.type.ObjectId,
-        ref: 'Review',   
-    },
-    timestamps: true
-  });
+    foodpost: {
+        type: Schema.Types.ObjectId,
+        ref: 'Post',
+    }
+}, { timestamps: true });
 // here are the foodpost include four items, title, user, img, reviews. 
 
 
   module.exports = mongoose.model('Foodpost', foodpostSchema);
-  // name first and single as a class
+  // name first and single as a class, it is the model 

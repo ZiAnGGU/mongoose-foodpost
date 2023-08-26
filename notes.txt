@@ -1,0 +1,4 @@
+when a request comes in
+(send request)         (routes request)   (controller performance the logic)
+ejs ----------> server -------> router ------> controller -------> send the response back to ejs 
+
