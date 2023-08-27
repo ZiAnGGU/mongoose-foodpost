@@ -20,6 +20,7 @@ function newFoodpost (req, res) {
 };
 
 // async function create(req, res) {
+ //   console.log(req.body)
 //     try {
 //       const newFoodpost = new Foodpost(req.body);
 //       await newFoodpost.save();
