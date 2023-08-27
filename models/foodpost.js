@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const foodpostSchema = new Schema({
-    title: {
+    name: {
         type: String,
-        enum: ['Japanese Food', 'Mexican Food', 'American Food'],
+        // enum: ['Japanese Food', 'Mexican Food', 'American Food'],
         required: true //***check out do I need a required???
     },
     user: {
@@ -15,13 +15,22 @@ const foodpostSchema = new Schema({
     //   userName: String,
     //   userAvatar: String
     },
-    img: {
-        type: Schema.Types.ObjectId,
-    // }, right now I have no idea to do the image part 
+    category: {
+        type: String,
+        enum: ['Japanese Food', 'Mexican Food', 'American Food'],
+        required: true
+      },
+    imageUrl: {
+        type: String,
+        required: true
     },
-    foodpost: {
-        type: Schema.Types.ObjectId,
-        ref: 'Post',
+    // foodpost: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Post',
+    // }
+    nowPosting: {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true });
 // here are the foodpost include four items, title, user, img, reviews. 
