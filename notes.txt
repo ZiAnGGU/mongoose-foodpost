@@ -2,3 +2,11 @@ when a request comes in
 (send request)         (routes request)   (controller performance the logic)
 ejs ----------> server -------> router ------> controller -------> send the response back to ejs 
 
+
+when a requires comes in 
+
+ejs sneds the request 
+the request ends up on the server
+it gets routed appropriately
+a controller function is fired from the route 
+the controller will use the model to perform CRUD

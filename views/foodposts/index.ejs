@@ -1,6 +1,23 @@
 <%- include('../partials/header') %>
 
-
+<table id="list">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% foodposts.forEach(function(foodpost) { %>
+        <tr>
+          <td><%= foodpost.name %></td>
+          <td><%= foodpost.category %></td>
+          <td><a href="/foodpost/<%= foodpost.id %>">DETAILS</a></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
 
 
 <%- include('../partials/footer') %>

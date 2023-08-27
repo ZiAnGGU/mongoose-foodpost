@@ -17,14 +17,14 @@ router.get('/auth/google', passport.authenticate(
 router.get('/oauth2callback', passport.authenticate(
   'google',
   {
-    successRedirect: '/foodpost',
-    failureRedirect: '/foodpost'
+    successRedirect: '/foodposts',
+    failureRedirect: '/foodposts'
   }
 ));
 
 router.get('/logout', function(req, res){
   req.logout(function() {
-    res.redirect('/foodpost');
+    res.redirect('/foodposts');
   });
 });
 
