@@ -1,0 +1,14 @@
+<%- include('../partials/header') %>
+
+<section id="show-page">
+  <div>Name: </div>
+  <div><%= foodpost.name %></div>
+  <div>Category: </div>
+  <div><%= foodpost.category %></div>
+  <div>Image URL: </div>
+  <div><img src="<%= foodpost.imageUrl %>" alt="<%= foodpost.name %>" /></div>
+  <div>Now Posting: </div>
+  <div><%= foodpost.nowPosting ? 'Yes' : 'No' %></div>
+</section>
+
+<%- include('../partials/footer') %>

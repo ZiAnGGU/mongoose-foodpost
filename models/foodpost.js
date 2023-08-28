@@ -22,10 +22,10 @@ const foodpostSchema = new Schema({
         type: String,
         required: true
     },
-    nowPosting: {
-        type: Boolean,
-        default: false
-    }
+    // nowPosting: {
+    //     type: String,
+    //     default: true
+    // }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Foodpost', foodpostSchema);
