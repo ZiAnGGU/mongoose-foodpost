@@ -14,6 +14,7 @@ router.get('/', foodpostsCtrl.index)
 router.get('/new', foodpostsCtrl.new)
 router.post('/', foodpostsCtrl.create);
 router.get('/:id', foodpostsCtrl.show);
+router.delete('/:id', foodpostsCtrl.delete);
 
 
 

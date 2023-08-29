@@ -25,7 +25,7 @@ async function createReview(req, res) {
     }
     res.redirect(`/foodposts/${foodpost._id}`);
 }
-
+// not showing 
 // async function deleteReview(req, res) {
 //     const foodpost = await foodpost.findOne({'reviews._id': req.params.id, 'reviews.user: req.user._id'});
 //     if(!foodpost) return res.redirect('/foodposts');

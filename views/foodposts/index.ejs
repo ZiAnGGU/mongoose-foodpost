@@ -14,10 +14,15 @@
           <td><%= foodpost.name %></td>
           <td><%= foodpost.category %></td>
           <td><a href="/foodposts/<%= foodpost.id %>">DETAILS</a></td>
+          <td>
+            <form action="/foodposts/<%= foodpost.id %>?_method=DELETE" method="POST">
+              <button type="submit">X</button>
+            </form>
+          </td>
         </tr>
-        <% }); %>
+      <% }); %>
       </tbody>
 </table>
-
+ 
 <%- include('../partials/footer') %>
 

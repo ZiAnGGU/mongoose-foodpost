@@ -6,7 +6,8 @@ module.exports = {
     index,
     new: newFoodpost, // give it a newFoodpost function 
     create,
-    show
+    show,
+    delete: deleteFoodpost
 }
 // in our router we have router.get('/new', foodpostsCtrl.new) we expected to call its new
 
@@ -32,20 +33,6 @@ function newFoodpost (req, res) {
     // view page foodposts/new
 };
 
-// async function create(req, res) {
- //   console.log(req.body)
-//     try {
-//       const newFoodpost = new Foodpost(req.body);
-//       await newFoodpost.save();
-//       res.redirect('/');
-//     } catch (err) {
-//       console.error(err);
-//       res.redirect('foodposts/new', {
-//         title: 'Add Foodpost',
-//         errors: err.errors
-//       });
-//     }
-//   };
 
 async function create(req, res) {
   req.body.user = req.user._id;
@@ -70,3 +57,16 @@ async function show(req, res) {
       res.redirect('/foodposts');
   }
 }
+
+async function deleteFoodpost(req, res) {
+    try {
+      const foodpost = await Foodpost.findById(req.params.id);
+      if (foodpost.user.equals(req.user._id)) {
+        await Foodpost.findByIdAndRemove(req.params.id);
+        res.redirect('/foodposts');
+      }
+    } catch (err) {
+      console.log(err);
+      res.redirect('/foodposts');
+    }
+  }

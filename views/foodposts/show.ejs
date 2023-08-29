@@ -1,12 +1,12 @@
 <%- include('../partials/header') %>
-
 <section id="show-page">
-  <div>Posted by: </div>
-  <div><img src="<%= foodpost.userAvatar %>" alt="User Avatar"><%= foodpost.userName %></div>
-  <div>What's posted:</div>
-  <div><%= foodpost.description %></div>
-  <div>Image:</div>
-  <div><img src="<%= foodpost.imageURL %>" alt="Food Image"></div>
+  <div class="info-header">Posted by: </div>
+  <div><img src="<%= foodpost.userAvatar %>" alt="User Avatar"> <%= foodpost.userName %></div>
+  <div class="info-header">Name: <%= foodpost.name %></div>
+  <div class="info-header">Category: <%= foodpost.category %></div>
+  <div class="info-header">What's posted:</div>
+  <div class="info-header">Image:</div>
+  <div><img src="<%= foodpost.imageUrl %>" alt="Food Image"></div>
 
   <h2>User Reviews</h2>
   <form id="add-review-form" method="POST" action="/foodposts/<%= foodpost._id %>/reviews">
@@ -30,13 +30,13 @@
         <% foodpost.reviews.forEach(function(r) { %>
           <% total += r.rating %>
           <tr>
-            <td class="review-user"><img alt="avatar" src="<%= r.userAvatar %>" referrerpolicy="no-referrer" ><%= r.userName %></td>
+            <td class="review-user"><img alt="avatar" src="<%= r.userAvatar %>" referrerpolicy="no-referrer"> <%= r.userName %></td>
             <td><%= r.content %></td>
             <td><%= r.rating %></td>
             <td>
               <% if (user?._id.equals(r.user)) { %>
                 <form action="/reviews/<%= r._id %>?_method=DELETE" method="POST">
-                  <button type="submit">␡</button>
+                  <button type="submit">Delete</button>
                 </form>
               <% } %>
             </td>
@@ -53,5 +53,14 @@
   <% } %>
 </section>
 
-<%- include('../partials/footer') %>
+  <!-- for delete -->
+  <% if (user && user._id.equals(foodpost.user)) { %>
+    <form id="delete-form" method="POST" action="/foodposts/<%= foodpost._id %>?_method=DELETE">
+      <button type="submit">Delete Post</button>
+    </form>
+  <% } %>
+ 
+  <p>ppp</p> 
+  <!-- delete later on -->
 
+<%- include('../partials/footer') %>
