@@ -19,7 +19,7 @@ module.exports = {
 async function index(req, res) {
   try {
       const foodposts = await Foodpost.find({});
-      res.render('foodposts/index', { title: 'All Posts', foodposts });
+      res.render('foodposts/index', { title: 'All Foodposts', foodposts });
   } catch (err) {
       console.log(err);
       res.status(500).send("An error occurred");
@@ -28,7 +28,7 @@ async function index(req, res) {
 
 // then we need to define the newFoodpost function here
 function newFoodpost (req, res) {
-    res.render('foodposts/new')
+    res.render('foodposts/new', {title: 'Add A Foodpost'});
     // view page foodposts/new
 };
 
@@ -63,10 +63,10 @@ async function create(req, res) {
 
 async function show(req, res) {
   try {
-      const foodpost = await Foodpost.findById(req.params.id); // Removed populate('cast') as it wasn't clear what it was for
+      const foodpost = await Foodpost.findById(req.params.id);
       res.render('foodposts/show', { foodpost });
   } catch (err) {
       console.log(err);
-      res.status(500).send("error");
+      res.status(500).send("An error occurred");
   }
 }

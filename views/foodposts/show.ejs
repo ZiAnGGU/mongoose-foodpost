@@ -3,12 +3,13 @@
 <section id="show-page">
   <div>Name: </div>
   <div><%= foodpost.name %></div>
+  <div>Posted By: </div>
+  <div><%= foodpost.userName %></div>
+  <div>User Avatar: </div>
+  <div><img src="<%= foodpost.userAvatar %>" alt="<%= foodpost.userName %>'s avatar" /></div>
   <div>Category: </div>
   <div><%= foodpost.category %></div>
   <div>Image URL: </div>
   <div><img src="<%= foodpost.imageUrl %>" alt="<%= foodpost.name %>" /></div>
-  <div>Now Posting: </div>
-  <div><%= foodpost.nowPosting ? 'Yes' : 'No' %></div>
 </section>
-
 <%- include('../partials/footer') %>

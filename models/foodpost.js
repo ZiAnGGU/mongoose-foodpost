@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const foodpostSchema = new Schema({
     name: {
         type: String,
-        required: true  // If you want this to be a required field
+        required: true 
     },
     user: {
         type: Schema.Types.ObjectId,
@@ -22,10 +22,7 @@ const foodpostSchema = new Schema({
         type: String,
         required: true
     },
-    // nowPosting: {
-    //     type: String,
-    //     default: true
-    // }
+
 }, { timestamps: true });
 
 module.exports = mongoose.model('Foodpost', foodpostSchema);

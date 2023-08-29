@@ -6,15 +6,16 @@ var logger = require('morgan');
 var session = require('express-session');
 var passport = require('passport');
 
-
-var indexRouter = require('./routes/index');
-var foodpostsRouter = require('./routes/foodposts');
-
-var app = express();
-
 require('dotenv').config();
 require('./config/database');
 require('./config/passport');
+
+
+// app routers here
+const indexRouter = require('./routes/index');
+const foodpostsRouter = require('./routes/foodposts');
+
+var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
