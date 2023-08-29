@@ -54,19 +54,19 @@ async function create(req, res) {
 
   try {
       const foodpost = await Foodpost.create(req.body);
-      res.redirect(`/foodposts/${foodpost._id}`);
+      res.redirect(`/foodposts`);
   } catch (err) {
       console.log(err);
-      res.status(500).render('foodposts/new', { errorMsg: 'try again.' });
+      res.redirect('/foodposts/new');
   }
 }
 
 async function show(req, res) {
   try {
       const foodpost = await Foodpost.findById(req.params.id);
-      res.render('foodposts/show', { foodpost });
+      res.render('foodposts/show', { foodpost, title: 'foodpost' });
   } catch (err) {
       console.log(err);
-      res.status(500).send("An error occurred");
+      res.redirect('/foodposts');
   }
 }

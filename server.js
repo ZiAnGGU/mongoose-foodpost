@@ -14,12 +14,14 @@ require('./config/passport');
 // app routers here
 const indexRouter = require('./routes/index');
 const foodpostsRouter = require('./routes/foodposts');
+// const reviewsRouter = require('./routes/reviews');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -41,9 +43,13 @@ app.use(function (req, res, next) {
   next();
 });
 
+// anything with /foodposts will go to this router
 app.use('/', indexRouter);
 app.use('/foodposts', foodpostsRouter); 
-// anything with /foodposts will go to this router
+// app.use('/reviews', reviewsRouter);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
