@@ -13,7 +13,7 @@
 
 body {
   font-family: 'Quicksand', sans-serif;
-  background-color: #f2f2f2; 
+  background-color: #F4A733; 
 }
 body > main {
   grid-area: main;
@@ -54,7 +54,7 @@ nav a:hover {
   background-color: #f8c77d; 
 }
 
-/* change */
+/* might need to change */
 #new-form {
   display: grid;
   grid-gap: 10px;
@@ -92,19 +92,85 @@ table td {
   text-align: center;
 }
 
+
 #list td:nth-child(2), #list td:nth-child(3){
   min-width: 100px;
 }
-/* later on for Pictures */
-/* .food-picture {
-  width: 100%;
-}
-
-.food-description {
-  padding: 20px;
-} */
 
 .active {
   border-bottom: 5px solid #731C21;
   border-radius: 5%;
+}
+
+#show-page {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  grid-gap: 16px;
+  padding: 20px;
+}
+
+.info-header {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+
+#show-page img {
+  max-width: 200px;  
+  height: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* table, th, td {
+  border-bottom: 2px solid #f9b94b;
+} */
+
+th, td {
+  padding: 8px;
+  text-align: center;
+}
+
+.review-user img {
+  max-width: 50px; 
+  height: auto;
+}
+/* review replay avatar cycle */
+.review-user img, .info-header img {
+  border-radius: 50%;
+  width: 50px;  
+  height: 50px;
+}
+
+.review-form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form-group {
+  margin-bottom: 0;  
+}
+
+.form-group input {
+  width: 300px;  
+  height: 40px;  
+  padding: 0 12px;
+  font-size: 16px;
+}
+
+.form-group button {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+/* food image in show.ejs */
+.food-image {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  display: block;
+  margin: 20px auto;
 }

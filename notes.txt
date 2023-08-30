@@ -10,3 +10,12 @@ the request ends up on the server
 it gets routed appropriately
 a controller function is fired from the route 
 the controller will use the model to perform CRUD
+
+
+
+edit.ejs original
+<form method="POST" action="/foodposts/<%= review.foodpost._id %>/reviews/<%= review._id %>?_method=PUT">
+  <label for="content">Review:</label>
+  <input type="text" id="content" name="content" value="<%= review.content %>">
+  <button type="submit">Update</button>
+</form>

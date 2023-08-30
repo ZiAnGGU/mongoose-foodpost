@@ -8,15 +8,11 @@ module.exports = {
     create,
     show,
     delete: deleteFoodpost,
-    addReview
+    addReview,
+    deleteReview
 }
 // in our router we have router.get('/new', foodpostsCtrl.new) we expected to call its new
 
-//original async index function:
-// async function index(req, res) {
-//     const foodpost = await Foodpost.find({});
-//     res.render('foodposts/index', {name: 'All Posts', foodposts});
-// };
 
 async function index(req, res) {
   try {
@@ -71,7 +67,7 @@ async function deleteFoodpost(req, res) {
       res.redirect('/foodposts');
     }
   }
-  
+
 async function addReview(req, res) {
     const foodpost = await Foodpost.findById(req.params.id);
   
@@ -89,3 +85,41 @@ async function addReview(req, res) {
     }
     res.redirect(`/foodposts/${foodpost._id}`);
   }
+
+  // new delete inside of detail
+  async function deleteReview(req, res, next) {
+    try {
+      const foodpost = await Foodpost.findById(req.params.foodpostId);
+      const reviewIndex = foodpost.reviews.findIndex(review => review._id.equals(req.params.reviewId));
+      
+      if (reviewIndex === -1) {
+        return res.status(404).send("Review not found");
+      }
+  
+      foodpost.reviews.splice(reviewIndex, 1);
+      await foodpost.save();
+  
+      res.redirect(`/foodposts/${req.params.foodpostId}`);
+    } catch (error) {
+      next(error);
+    }
+  }
+// NEW
+//   exports.deleteReview = async (req, res, next) => {
+//     try {
+//       // Assuming review is a subdocument in the FoodPost model
+//       const { foodpostId, reviewId } = req.params;
+//       await FoodPost.findByIdAndUpdate(foodpostId, {
+//         $pull: { reviews: {_id: reviewId} }
+//       });
+      
+//       // If you have a separate Review model, you can also do:
+//       // await Review.findByIdAndDelete(reviewId);
+  
+//       req.flash('success', 'Successfully deleted review.');
+//       res.redirect(`/foodposts/${foodpostId}`);
+//     } catch (error) {
+//       req.flash('error', 'Could not delete review.');
+//       res.redirect('back');
+//     }
+//   };

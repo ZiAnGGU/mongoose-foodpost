@@ -3,9 +3,13 @@ const Schema = mongoose.Schema;
 
 const reviewSchema = new Schema({
   name: {
-    name: String,
+    type: String,
     required: true,
+
   },
+  user: {
+
+  }
 }, {
   timestamps: true
 });

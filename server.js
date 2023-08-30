@@ -14,7 +14,7 @@ require('./config/passport');
 // app routers here
 const indexRouter = require('./routes/index');
 const foodpostsRouter = require('./routes/foodposts');
-// const reviewsRouter = require('./routes/reviews');
+const reviewsRouter = require('./routes/reviews');
 // for delete
 const methodOverride = require('method-override');
 
@@ -49,7 +49,7 @@ app.use(function (req, res, next) {
 // anything with /foodposts will go to this router
 app.use('/', indexRouter);
 app.use('/foodposts', foodpostsRouter); 
-// app.use('/reviews', reviewsRouter);
+app.use('/', reviewsRouter);
 // for delete
 
 

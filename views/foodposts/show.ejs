@@ -5,38 +5,40 @@
   <div class="info-header">Name: <%= foodpost.name %></div>
   <div class="info-header">Category: <%= foodpost.category %></div>
   <div class="info-header">What's posted: <%= foodpost.description %></div>
-  <div class="info-header">Image:</div>
-  <div><img src="<%= foodpost.imageUrl %>" alt="Food Image"></div>
-
-  <!-- <h2>User Reviews</h2>
-  <form id="add-review-form" method="POST" action="/foodposts/<%= foodpost._id %>/reviews">
-    <label>Review:</label>
-    <textarea name="content"></textarea>
-    <input type="submit" value="Add Review">
-  </form> -->
+ <!-- food image -->
+  <div class="food-image"><img src="<%= foodpost.imageUrl %>" alt="Food Image"></div>
 
   <% if (foodpost.reviews && foodpost.reviews.length) { %>
     <table>
       <tbody>
         <% let total = 0 %>
-        <% foodpost.reviews.forEach(function(r) { %>
-          <% total += r.rating %>
+        <% foodpost.reviews.forEach(function(review) { %>
           <tr>
-            <td class="review-user"><img alt="avatar" src="<%= r.userAvatar %>" referrerpolicy="no-referrer"> <%= r.userName %></td>
-            <td><%= r.content %></td>
-            <td><%= r.rating %></td>
+            <td class="review-user"><img alt="avatar" src="	https://lh3.googleusercontent.com/a/AAcHTtd5o1ONOKLZOvVDPvjsvXz71HSS1tgjPjKdmb3-yPXTjhs=s96-c" referrepolicy="no-referrer"> <%= review.userName %></td> 
+            <td><%= review.content %></td>
+            <!-- delete review NEW-->
             <td>
-              <% if (user?._id.equals(r.user)) { %>
-                <form action="/reviews/<%= r._id %>?_method=DELETE" method="POST">
+              <!-- r=review -->
+              <% if (user && user._id.equals(review.user)) { %>
+                <form method="POST" action="/foodposts/<%= foodpost._id %>/reviews/<%= review._id %>?_method=DELETE">
                   <button type="submit">Delete</button>
                 </form>
               <% } %>
             </td>
+            <td>
+                <!-- for edit -->
+              <% if (user && user._id.equals(review.user)) { %>
+                <form method="GET" action="/foodposts/<%= foodpost._id %>/reviews/<%= review._id %>/edit">
+                <button type="submit">Edit</button>
+                </form>
+              <% } %>
+            </td>
+            <!-- ends here -->
           </tr>
         <% }); %>
         <tr>
           <td colspan="3"></td>
-          <td><strong><%= (total / foodpost.reviews.length).toFixed(1) %></strong></td>
+          <!-- <td><strong><%= (total / foodpost.reviews.length).toFixed(1) %></strong></td> -->
         </tr>
       </tbody>
     </table>
@@ -49,11 +51,21 @@
       <button type="submit">Delete Post</button>
     </form>
   <% } %>
- 
-  <form method="POST" action="/foodposts/<%= foodpost._id %>/reviews">
-    <input name="content">
-    <button type="submit">Submit</button>
+
+  <!-- class for css -->
+  <form class="review-form" method="POST" action="/foodposts/<%= foodpost._id %>/reviews">
+    <div class="form-group">
+      <label for="review-content">Leave Your Review:</label>
+    </div>
+    <div class="form-group">
+      <input id="review-content" name="content">
+    </div>
+    <div class="form-group">
+      <button type="submit">Submit</button>
+    </div>
   </form>
-  <!-- delete later on -->
+  <p>mark</p>
+  <!-- New UI for deleting reviews inside detail of foodpost -->
+ 
 
 <%- include('../partials/footer') %>
