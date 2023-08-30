@@ -71,21 +71,7 @@ async function deleteFoodpost(req, res) {
       res.redirect('/foodposts');
     }
   }
-//need to do 
-// async function addReview(req, res) {
-//     const foodpost = await Foodpost.findById(req.params.id);
-//     req.body.user = req.user._id;
-//     req.body.userName = req.user.name;
-//     req.body.userAvatar = req.user.avatar;
-
-//     foodpost.reviews.push(req.body);
-//     try {
-//         await foodpost.save();
-//     } catch (err) {
-//         console.log(err)
-//     }
-//     res.redirect(`/foodposts/${foodpost}`)
-// }
+  
 async function addReview(req, res) {
     const foodpost = await Foodpost.findById(req.params.id);
   
