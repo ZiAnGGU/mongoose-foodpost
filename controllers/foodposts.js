@@ -7,7 +7,8 @@ module.exports = {
     new: newFoodpost, // give it a newFoodpost function 
     create,
     show,
-    delete: deleteFoodpost
+    delete: deleteFoodpost,
+    addReview
 }
 // in our router we have router.get('/new', foodpostsCtrl.new) we expected to call its new
 
@@ -38,7 +39,7 @@ async function create(req, res) {
   req.body.user = req.user._id;
   req.body.userName = req.user.name;
   req.body.userAvatar = req.user.avatar;
-
+console.log(req.body)
   try {
       const foodpost = await Foodpost.create(req.body);
       res.redirect(`/foodposts`);
@@ -69,4 +70,36 @@ async function deleteFoodpost(req, res) {
       console.log(err);
       res.redirect('/foodposts');
     }
+  }
+//need to do 
+// async function addReview(req, res) {
+//     const foodpost = await Foodpost.findById(req.params.id);
+//     req.body.user = req.user._id;
+//     req.body.userName = req.user.name;
+//     req.body.userAvatar = req.user.avatar;
+
+//     foodpost.reviews.push(req.body);
+//     try {
+//         await foodpost.save();
+//     } catch (err) {
+//         console.log(err)
+//     }
+//     res.redirect(`/foodposts/${foodpost}`)
+// }
+async function addReview(req, res) {
+    const foodpost = await Foodpost.findById(req.params.id);
+  
+    // Add the user-centric info to req.body (the new review)
+    req.body.user = req.user._id;
+    req.body.userName = req.user.name;
+    req.body.userAvatar = req.user.avatar;
+  
+    // We can push (or unshift) subdocs into Mongoose arrays
+    foodpost.reviews.push(req.body);
+    try {
+      await foodpost.save();
+    } catch (err) {
+      console.log(err);
+    }
+    res.redirect(`/foodposts/${foodpost._id}`);
   }

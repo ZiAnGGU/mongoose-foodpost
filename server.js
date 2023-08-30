@@ -18,6 +18,7 @@ const foodpostsRouter = require('./routes/foodposts');
 // for delete
 const methodOverride = require('method-override');
 
+////!!!
 var app = express();
 
 // view engine setup
@@ -29,6 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 app.use(session({
   secret: process.env.SECRET,
@@ -49,7 +51,7 @@ app.use('/', indexRouter);
 app.use('/foodposts', foodpostsRouter); 
 // app.use('/reviews', reviewsRouter);
 // for delete
-app.use(methodOverride('_method'));
+
 
 
 

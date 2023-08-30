@@ -4,27 +4,19 @@
   <div><img src="<%= foodpost.userAvatar %>" alt="User Avatar"> <%= foodpost.userName %></div>
   <div class="info-header">Name: <%= foodpost.name %></div>
   <div class="info-header">Category: <%= foodpost.category %></div>
-  <div class="info-header">What's posted:</div>
+  <div class="info-header">What's posted: <%= foodpost.description %></div>
   <div class="info-header">Image:</div>
   <div><img src="<%= foodpost.imageUrl %>" alt="Food Image"></div>
 
-  <h2>User Reviews</h2>
+  <!-- <h2>User Reviews</h2>
   <form id="add-review-form" method="POST" action="/foodposts/<%= foodpost._id %>/reviews">
     <label>Review:</label>
     <textarea name="content"></textarea>
     <input type="submit" value="Add Review">
-  </form>
+  </form> -->
 
   <% if (foodpost.reviews && foodpost.reviews.length) { %>
     <table>
-      <thead>
-        <tr>
-          <th>User</th>
-          <th>Content</th>
-          <th>Rating</th>
-          <th></th>
-        </tr>
-      </thead>
       <tbody>
         <% let total = 0 %>
         <% foodpost.reviews.forEach(function(r) { %>
@@ -48,8 +40,6 @@
         </tr>
       </tbody>
     </table>
-  <% } else { %>
-    <h5>No Reviews Yet</h5>
   <% } %>
 </section>
 
@@ -60,7 +50,10 @@
     </form>
   <% } %>
  
-  <p>ppp</p> 
+  <form method="POST" action="/foodposts/<%= foodpost._id %>/reviews">
+    <input name="content">
+    <button type="submit">Submit</button>
+  </form>
   <!-- delete later on -->
 
 <%- include('../partials/footer') %>

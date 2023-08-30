@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const reviewsCtrl = require('../controllers/reviews');
+// const Review = require('../models/reviews')
 
 module.exports = {
     create,
@@ -50,6 +51,30 @@ async function deleteReview(req, res) {
         res.status(500).send("Error");
     }
 }
+
+// exports.show = async (req, res) => {
+//     try {
+//         const foodpost = await Foodpost.findById(req.params.id).populate('reviews');
+//         res.render('foodposts/show', { foodpost });
+//     } catch (err) {
+//         console.log(err);
+//         res.redirect('/foodposts');
+//     }
+// };
+
+// exports.addReview = async (req, res) => {
+//     try {
+//         const foodpost = await Foodpost.findById(req.params.id);
+//         const review = new Review(req.body);
+//         foodpost.reviews.push(review);
+//         await review.save();
+//         await foodpost.save();
+//         res.redirect(`/foodposts/${foodpost._id}`);
+//     } catch (err) {
+//         console.log(err);
+//         res.redirect(`/foodposts/${req.params.id}`);
+//     }
+// };
 
 
 module.exports = router;

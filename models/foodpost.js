@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const reviewSchema = new Schema({
+    content: {
+      name: String,
+    },
+  }, {
+    timestamps: true
+  });
 const foodpostSchema = new Schema({
     name: {
         type: String,
@@ -22,11 +28,11 @@ const foodpostSchema = new Schema({
         type: String,
         required: true
     },
-    reviews: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Review'
-    }],
-
+    description: {
+        type: String
+    }, 
+    reviews: [reviewSchema]
 }, { timestamps: true });
+
 
 module.exports = mongoose.model('Foodpost', foodpostSchema);
