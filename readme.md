@@ -97,3 +97,5 @@ async function update(req, res) {
 ### 🤔 Next Steps ###
 - Add more features like edit foodposts
 - Add more pages and more functions
+- Continue practice more on Node.js/Express/MongoDB/Mongoose 
+- Enrich current project with seeding and API 
