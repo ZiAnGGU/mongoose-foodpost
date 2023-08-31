@@ -11,7 +11,7 @@ This second project of the software engineering immersive course at GA requires 
 * MongoDB
 * Git
 
-### Get Started ###
+### 🌊 Get Started ###
 This is a platform where users can post their favorite foods and to give comments based on different shares. They will be able to check people's posts, add their own posts, as well as comment under others' posts. 
 
 #### ERD Map ####
